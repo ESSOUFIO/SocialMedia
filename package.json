@@ -1,0 +1,26 @@
+{
+  "name": "socialmedia",
+  "version": "1.0.0",
+  "description": "SocialMedia project with Tarmeez API",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ESSOUFIO/SocialMedia.git"
+  },
+  "keywords": [
+    "Social",
+    "Media"
+  ],
+  "author": "Omar ESSOUFI",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ESSOUFIO/SocialMedia/issues"
+  },
+  "homepage": "https://github.com/ESSOUFIO/SocialMedia#readme",
+  "dependencies": {
+    "axios": "^1.2.1"
+  }
+}

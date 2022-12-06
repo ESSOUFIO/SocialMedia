@@ -1,6 +1,6 @@
 .container{
-    padding-left: 13em;
-    padding-right: 13em;
+    padding-left: 16em;
+    padding-right: 16em;
     min-width: 50em;
 }
 .card-header{
@@ -9,4 +9,7 @@
 .card-body > h6{
     color: rgb(143, 143, 143);
     margin-top: 5px;
+}
+body{
+    background: rgb(10, 10, 10)
 }
