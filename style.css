@@ -1,4 +1,12 @@
 .container{
-    padding-left: 7em;
-    padding-right: 7em;
+    padding-left: 13em;
+    padding-right: 13em;
+    min-width: 50em;
+}
+.card-header{
+    padding: 6px;
+}
+.card-body > h6{
+    color: rgb(143, 143, 143);
+    margin-top: 5px;
 }
