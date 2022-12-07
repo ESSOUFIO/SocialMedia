@@ -22,14 +22,9 @@
 </head>
 
 <body>
-    <!-- Alerts -->
-    <div class="alert alert-success alert-dismissible fade show container-lg" role="alert" style="width: 40vw; text-align: center;">
-        <strong>Login Successful..</strong> Hi Omar!
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-
+    
     <!-- NAVBAR -->
-    <div class="container" style="display: none;">
+    <div class="container">
         <nav class="navbar navbar-expand-lg bg-light shadow-sm rounded pt-3 mb-4">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">SocialMedia</a>
@@ -47,14 +42,31 @@
                         </li>
                     </ul>
                 </div>  
-                <div>
+                <div class="btnLogin d-block">
                     <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#LoginModal" data-bs-whatever="@getbootstrap">Login</button>
                     <button type="button" class="btn btn-primary">Register</button>
+                </div>
+                <div class="btnLogout d-none">
+                    <button type="button" onclick="logoutBtnClicked()" class="btn btn-outline-danger">Logout</button>
                 </div>
             </div>
           </nav>
     </div>
     <!-- // NAVBAR // -->
+
+    <!-- =========== ALERTES ======== -->
+    <!-- Alerts Login -->
+    <div id="alertLoginSuccess" class="alert alert-success alert-dismissible fade show container-lg d-none" role="alert" style="width: 40vw; text-align: center;">
+        <strong>Login Successful..</strong> Hi Omar!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <!-- Alerts Logout -->
+    <div id="alertLogout" class="alert alert-danger alert-dismissible fade show container-lg d-none" role="alert" style="width: 40vw; text-align: center;">
+        <strong>LOGOUT SUCCESSFULLY</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <!-- // =========== ALERTES ======== //-->
 
     <!-- Posts -->
     <div class="container">
@@ -76,11 +88,11 @@
             <form>
             <div class="mb-1">
                 <label for="recipient-name" class="col-form-label">Username:</label>
-                <input type="text" class="form-control" id="username">
+                <input type="text" class="form-control" id="username" value="omar">
             </div>
             <div class="mb-1">
                 <label for="message-text" class="col-form-label">Password:</label>
-                <input type="Password" class="form-control" id="password">
+                <input type="Password" class="form-control" id="password" value="123456">
             </div>
             </form>
         </div>

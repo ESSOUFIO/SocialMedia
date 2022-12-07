@@ -63,9 +63,37 @@ function LoginBtnClicked(){
 
     axios.post(url, Param)
     .then(element => {
-        console.log(element.data.token)
+        localStorage.setItem("token", element.data.token)
+        localStorage.setItem("user",JSON.stringify(element.data.user))
+        //Close login Modal
+        const ModalLogin = document.getElementById("LoginModal")
+        const modalInstance = bootstrap.Modal.getInstance(ModalLogin)
+        modalInstance.hide()
+        setupUI()
+        document.getElementById("alertLoginSuccess").classList.remove('d-none')
+        setTimeout(()=>{document.getElementById("alertLoginSuccess").classList.add('d-none')}, 6000)
     })
     .catch(error => alert(error))
 }
+function logoutBtnClicked(){
+    localStorage.removeItem("token")
+    localStorage.removeItem("user")
+    setupUI()
+    document.getElementById("alertLogout").classList.remove('d-none')
+    setTimeout(()=>{document.getElementById("alertLogout").classList.add('d-none')}, 4000)
+}
 
+function setupUI(){
+    const token = localStorage.getItem("token")
+
+    if (token != null){
+        document.querySelector(".btnLogin").classList.add('d-none')
+        document.querySelector(".btnLogout").classList.remove('d-none')
+    }else{
+        document.querySelector(".btnLogin").classList.remove('d-none')
+        document.querySelector(".btnLogout").classList.add('d-none')
+    }
+}
+
+setupUI()
 getUser()
