@@ -13,3 +13,16 @@
 body{
     background: rgb(10, 10, 10)
 }
+.card-body img{
+    max-height: 50vh;
+}
+.tag{
+    padding: 1px 20px 3px 20px;
+    margin-left: 10px;
+    background: rgb(129, 128, 128);
+    line-height: -1;
+    font-style: italic;
+    font-size: .9rem;
+    border-radius: 15px;
+    color: white;
+}
