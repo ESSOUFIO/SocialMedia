@@ -23,7 +23,7 @@
 
 <body>
     
-    <!-- NAVBAR -->
+    <!--======= NAVBAR ==========-->
     <div class="container">
         <nav class="navbar navbar-expand-lg bg-light shadow-sm rounded pt-3 mb-4">
             <div class="container-fluid">
@@ -44,65 +44,133 @@
                 </div>  
                 <div class="btnLogin d-block">
                     <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#LoginModal" data-bs-whatever="@getbootstrap">Login</button>
-                    <button type="button" class="btn btn-primary">Register</button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#RegisterModal" data-bs-whatever="@getbootstrap">Register</button>
                 </div>
                 <div class="btnLogout d-none">
-                    <button type="button" onclick="logoutBtnClicked()" class="btn btn-outline-danger">Logout</button>
+                    <img id="ProfileImg_Navbar" class="rounded-circle" width="35px" height="35px">
+                    <b id="Username_Navbar"></b>
+                    <button type="button" onclick="logoutBtnClicked()" class="btn btn-outline-danger ms-2">Logout</button>
                 </div>
             </div>
           </nav>
     </div>
-    <!-- // NAVBAR // -->
+    <!-- //======= NAVBAR // ==========-->
+
 
     <!-- =========== ALERTES ======== -->
-    <!-- Alerts Login -->
-    <div id="alertLoginSuccess" class="alert alert-success alert-dismissible fade show container-lg d-none" role="alert" style="width: 40vw; text-align: center;">
-        <strong>Login Successful..</strong> Hi Omar!
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
+    <div id="alertLoginDiv" style="position:fixed; z-index: 999999; bottom: 0; right: 0; width: 25vw; text-align: left;"></div>
+    <!-- //=========== ALERTES ===========// -->
 
-    <!-- Alerts Logout -->
-    <div id="alertLogout" class="alert alert-danger alert-dismissible fade show container-lg d-none" role="alert" style="width: 40vw; text-align: center;">
-        <strong>LOGOUT SUCCESSFULLY</strong>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    <!-- // =========== ALERTES ======== //-->
+    <!-- ============= Add Post Button ========== -->
+    <i class="bi bi-plus AddPostButton bg-primary fade show" data-bs-toggle="modal" data-bs-target="#NewPostModal" data-bs-whatever="@getbootstrap"></i>
 
-    <!-- Posts -->
+
+    <!-- ====== Posts ======= -->
     <div class="container">
         <div class="posts">
             <!-- Posts from API -->
         </div>
     </div>
-    <!-- // Posts // -->
+    <!-- //======== Posts ========= // -->
 
-    <!-- Madal Login -->
+
+    <!-- ========== Madal Login ==============-->
     <div class="modal fade" id="LoginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Login</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <form>
-            <div class="mb-1">
-                <label for="recipient-name" class="col-form-label">Username:</label>
-                <input type="text" class="form-control" id="username" value="omar">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-1">
+                            <label for="recipient-name" class="col-form-label">Username:</label>
+                            <input type="text" class="form-control" id="username" value="omar">
+                        </div>
+                        <div class="mb-1">
+                            <label for="message-text" class="col-form-label">Password:</label>
+                            <input type="Password" class="form-control" id="password" value="123456">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="LoginBtnClicked()">Login</button>
+                </div>
             </div>
-            <div class="mb-1">
-                <label for="message-text" class="col-form-label">Password:</label>
-                <input type="Password" class="form-control" id="password" value="123456">
-            </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" onclick="LoginBtnClicked()">Login</button>
-        </div>
         </div>
     </div>
+    <!-- //============ Modal Login //================ -->
+
+
+    <!--=========== Madal Register ================-->
+    <div class="modal fade" id="RegisterModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Register</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-1">
+                            <label for="recipient-name" class="col-form-label">Name:</label>
+                            <input type="text" class="form-control" id="RegisterName" value="Alkhattab">
+                        </div>
+                        <div class="mb-1">
+                            <label for="recipient-name" class="col-form-label">Username:</label>
+                            <input type="text" class="form-control" id="RegisterUsername" value="ALKHAT">
+                        </div>
+                        <div class="mb-1">
+                            <label for="message-text" class="col-form-label">Password:</label>
+                            <input type="Password" class="form-control" id="RegisterPassword" value="123456">
+                        </div>
+                        <div class="mb-1">
+                            <label for="ProfileImg_Input" class="col-form-label">Photo:</label>
+                            <input type="file" class="form-control" id="ProfileImg_Input">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="RegisterBtnClicked()">Register</button>
+                </div>
+            </div>
+        </div>
     </div>
+    <!-- ============ // Modal Register // ==============-->
+
+
+    <!--=========== New Post Modal ================-->
+    <div class="modal fade" id="NewPostModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">New Post</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-1">
+                            <input type="text" class="form-control" id="NewPost_Title" autofocus>
+                        </div>
+                        <div class="mb-1">
+                            <textarea name="" id="NewPost_Body" class="w-100 rounded mt-3" rows="5"></textarea>
+                        </div>
+                        <div class="mb-1">
+                            <input type="file" class="form-control" id="NewPost_img">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="CreateNewPost()">Create</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============ // New Post Modal // ==============-->
 </body>
 <script src="script.js"></script>
 </html>

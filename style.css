@@ -26,3 +26,15 @@ body{
     border-radius: 15px;
     color: white;
 }
+
+.AddPostButton{
+    position: fixed;
+    right: 10%;
+    bottom: 10%;
+    padding: 6px;
+    border-radius: 100%;
+    color: white;
+    font-size: 40px;
+    line-height: 1;
+    cursor: pointer;
+}
