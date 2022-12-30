@@ -1,3 +1,4 @@
+//* ========== getPosts ========== //
 function getPosts(page = 1) {
   let url = `https://tarmeezacademy.com/api/v1/posts?limit=5&page=${page}`;
   let id, username, photoProfileURL, postTitle, postBody, postTime;
@@ -16,7 +17,6 @@ function getPosts(page = 1) {
     .get(url)
     .then((response) => {
       response.data.data.forEach((post) => {
-        // console.log(element)
         id = post.id;
         username = post.author.username;
         photoProfileURL = post.author.profile_image;
@@ -31,7 +31,6 @@ function getPosts(page = 1) {
         for (tag of post.tags) {
           tagsContent += `<span class="tag">${tag.name}</span>`;
         }
-        // console.log(typeof photoProfileURL)
         if (typeof photoProfileURL == "object") {
           photoProfileURL = "./images/profile.png";
         }
@@ -51,7 +50,6 @@ function getPosts(page = 1) {
         }
 
         let btnContent = ``;
-        console.log(UserID, post.author.id);
         if (UserID == post.author.id) {
           btnContent = `
               <i class="bi bi-pen" id="EditPostBtn" data-bs-toggle="modal" data-bs-target="#EditPostModal" onclick="editPostBtnClicked('${encodeURIComponent(
@@ -99,7 +97,9 @@ function getPosts(page = 1) {
     })
     .then(toggleLoader(false));
 }
+//* ========== getPosts ========== //
 
+//* ========== editPostBtnClicked ========== //
 function editPostBtnClicked(postObject) {
   let post = JSON.parse(decodeURIComponent(postObject));
   document.getElementById("PostTitle_input").value = post.title;
@@ -107,7 +107,9 @@ function editPostBtnClicked(postObject) {
   age;
   CurrentPost = post.id;
 }
+//* ========== editPostBtnClicked ========== //
 
+//* ========== EditPost ========== //
 function EditPost() {
   const title = document.getElementById("PostTitle_input").value;
   const body = document.getElementById("PostBody_input").value;
@@ -115,7 +117,6 @@ function EditPost() {
   let formData;
 
   if (image != undefined) {
-    console.log(image);
     formData = new FormData();
     formData.append("title", title);
     formData.append("body", body);
@@ -159,11 +160,15 @@ function EditPost() {
     })
     .then(toggleLoader(false));
 }
+//* ========== EditPost ========== //
 
+//* ========== deletePostBtnClicked ========== //
 function deletePostBtnClicked(postID) {
   CurrentPost = postID;
 }
+//* ========== deletePostBtnClicked ========== //
 
+//* ========== DeletePost ========== //
 function DeletePost() {
   const token = localStorage.getItem("token");
   const url = BaseURL + `/posts/${CurrentPost}`;
@@ -202,7 +207,9 @@ function DeletePost() {
       }, 8000);
     });
 }
+//* ========== DeletePost ========== //
 
+//* ========== CreateNewPost ========== //
 function CreateNewPost() {
   const url = BaseURL + "/posts";
   const title = document.getElementById("NewPost_Title").value;
@@ -211,7 +218,6 @@ function CreateNewPost() {
   let formData;
 
   if (image != undefined) {
-    console.log(image);
     formData = new FormData();
     formData.append("title", title);
     formData.append("body", body);
@@ -261,29 +267,36 @@ function CreateNewPost() {
     })
     .then(toggleLoader(false));
 }
+//* ========== CreateNewPost ========== //
 
+//* ========== handleInfiniteScroll ========== //
 const handleInfiniteScroll = () => {
   const endOfPage =
     window.innerHeight + window.pageYOffset >= document.body.offsetHeight;
 
   if (endOfPage && trigger && currentPage < lastPage) {
     currentPage++;
-    console.log(currentPage, lastPage);
     getPosts(currentPage);
     trigger = false;
   } else if (!endOfPage) {
     trigger = true;
   }
 };
+//* ========== handleInfiniteScroll ========== //
 
+//* ========== PostClicked ========== //
 function PostClicked(PostId) {
-  window.location = `postDetails.html?postId=${PostId}`;
+  window.location = `pages/postDetails.html?postId=${PostId}`;
 }
+//* ========== PostClicked ========== //
 
+//* ========== ShowProfile ========== //
 function ShowProfile(AuthorID) {
-  window.location = `profile.html?authorID=${AuthorID}`;
+  window.location = `pages/profile.html?authorID=${AuthorID}`;
 }
+//* ========== ShowProfile ========== //
 
+//* ========== Variables ========== //
 var currentPage = 1,
   lastPage = 1,
   trigger = true;

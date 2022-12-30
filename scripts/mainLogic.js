@@ -1,3 +1,4 @@
+//* ========= ShowAlert ======== //
 function ShowAlert(message, type = "success") {
   const content = `
         <div id="alertLogin" class="alert alert-${type} alert-dismissible fade show" role="alert" >
@@ -7,7 +8,9 @@ function ShowAlert(message, type = "success") {
     `;
   document.getElementById("alertLoginDiv").innerHTML = content;
 }
+//* ========= ShowAlert ======== //
 
+//* ========= LoginBtnClicked ======== //
 function LoginBtnClicked() {
   const BaseURL = "https://tarmeezacademy.com/api/v1";
   const url = BaseURL + "/login";
@@ -35,7 +38,7 @@ function LoginBtnClicked() {
         alertToHide.close();
       }, 3000);
 
-      // //Refresh of localStroage
+      ///Refresh of localStroage
       // setTimeout(() => {
       //   window.location.reload();
       //   getPosts();
@@ -56,7 +59,9 @@ function LoginBtnClicked() {
     document.querySelector(".AddCommentDiv").classList.remove("d-none");
   }
 }
+//* ========= LoginBtnClicked ======== //
 
+//* ========= logoutBtnClicked ======== //
 function logoutBtnClicked() {
   localStorage.removeItem("token");
   localStorage.removeItem("user");
@@ -66,15 +71,10 @@ function logoutBtnClicked() {
     const alertToHide = bootstrap.Alert.getOrCreateInstance("#alertLogin");
     alertToHide.close();
   }, 3000);
-
-  //Refresh of localStroage
-  setTimeout(() => {
-    window.location = "index.html";
-    window.location.reload();
-    getPosts();
-  }, 300);
 }
+//* ========= logoutBtnClicked ======== //
 
+//* ========= RegisterBtnClicked ======== //
 function RegisterBtnClicked() {
   const BaseURL = "https://tarmeezacademy.com/api/v1";
   const url = BaseURL + "/register";
@@ -84,7 +84,6 @@ function RegisterBtnClicked() {
   const Password = document.getElementById("RegisterPassword").value;
   const Image = document.getElementById("ProfileImg_Input").files[0];
 
-  // console.log(Image)
   const formData = new FormData();
   formData.append("username", Username);
   formData.append("password", Password);
@@ -117,7 +116,9 @@ function RegisterBtnClicked() {
     })
     .then(toggleLoader(false));
 }
+//* ========= RegisterBtnClicked ======== //
 
+//* ========= setupUI ======== //
 function setupUI() {
   const token = localStorage.getItem("token");
   const AddPost = document.querySelector(".AddPostButton");
@@ -140,7 +141,9 @@ function setupUI() {
     document.querySelector(".btnLogout").classList.add("d-none");
   }
 }
+//* ========= setupUI ======== //
 
+//* ========= toggleLoader ======== //
 function toggleLoader(show = true) {
   if (show) {
     document.getElementById("Loader").style.visibility = "visible";
@@ -148,3 +151,4 @@ function toggleLoader(show = true) {
     document.getElementById("Loader").style.visibility = "hidden";
   }
 }
+//* ========= toggleLoader ======== //

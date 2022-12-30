@@ -1,5 +1,4 @@
-var PostId;
-
+//* ========= FillPost =========//
 function FillPost() {
   let id, username, photoProfileURL, postTitle, postBody, postTime;
   let postImage, tagsContent, tag, NbrComments;
@@ -11,7 +10,6 @@ function FillPost() {
   PostId = urlParams.get("postId");
 
   let url = `https://tarmeezacademy.com/api/v1/posts/${PostId}`;
-  console.log(PostId);
 
   toggleLoader(true);
   axios
@@ -25,7 +23,6 @@ function FillPost() {
       postImage = element.image;
       postTime = element.created_at;
       NbrComments = element.comments_count;
-      // console.log(element.comments, element.comments[0].body, element.comments[0].author.name, element.comments[0].author.profile_image)
       tagsContent = "";
       for (tag of element.tags) {
         tagsContent += `<span class="tag">${tag.name}</span>`;
@@ -84,13 +81,18 @@ function FillPost() {
       }
       // bg-opacity-10 px-3 py-1 border ms-1
     })
-    .catch(function (error) {
-      // handle error
-      console.log(error);
+    .catch((error) => {
+      ShowAlert(error.response.data.message, "danger");
+      setTimeout(() => {
+        const alertToHide = bootstrap.Alert.getOrCreateInstance("#alertLogin");
+        alertToHide.close();
+      }, 8000);
     })
     .then(toggleLoader(false));
 }
+//* ========= FillPost =========//
 
+//* ========= AddComment =========//
 function AddComment() {
   let comment = document.getElementById("Comment_Input").value;
   if (comment == "") {
@@ -123,5 +125,7 @@ function AddComment() {
     })
     .then(toggleLoader(false));
 }
+//* ========= AddComment =========//
 
+let PostId;
 setupUI();

@@ -1,5 +1,4 @@
-let url = `https://tarmeezacademy.com/api/v1/posts`;
-
+//* =========== RenderPost =============//
 function RenderPost(post) {
   let id, username, photoProfileURL, postTitle, postBody, postTime;
   let postImage, tagsContent, tag, NbrComments, PostImageDiv;
@@ -24,7 +23,6 @@ function RenderPost(post) {
   for (tag of post.tags) {
     tagsContent += `<span class="tag">${tag.name}</span>`;
   }
-  // console.log(typeof photoProfileURL)
   if (typeof photoProfileURL == "object") {
     photoProfileURL = "./images/profile.png";
   }
@@ -82,7 +80,9 @@ function RenderPost(post) {
 
   document.querySelector(".posts").innerHTML += content;
 }
+//* =========== RenderPost =============//
 
+//* =========== getPosts =============//
 function getPosts(User) {
   toggleLoader(true);
   axios
@@ -103,7 +103,9 @@ function getPosts(User) {
     })
     .then(toggleLoader(false));
 }
+//* =========== getPosts =============//
 
+//* =========== fillPage =============//
 function fillPage() {
   let PostNumber = 0;
   let CommentNumber = 0;
@@ -139,7 +141,9 @@ function fillPage() {
     getPosts(User);
   }
 }
+//* =========== fillPage =============//
 
+//* =========== fillProfilInfo =============//
 function fillProfilInfo(User, PostNb, CommentNb) {
   document.getElementById("Name").innerHTML = User.name;
   document.getElementById("UserName").innerHTML = User.username;
@@ -147,9 +151,13 @@ function fillProfilInfo(User, PostNb, CommentNb) {
   document.getElementById("StatPostNbr").innerHTML = PostNb;
   document.getElementById("StatCommentNbr").innerHTML = CommentNb;
 }
+//* =========== fillProfilInfo =============//
 
+//* =========== PostClicked =============//
 function PostClicked(PostId) {
   window.location = `postDetails.html?postId=${PostId}`;
 }
+//* =========== PostClicked =============//
 
+let url = `https://tarmeezacademy.com/api/v1/posts`;
 fillPage();
